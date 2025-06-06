@@ -6,12 +6,15 @@ api_key = "0fc34c3d866047af97b8ce3de77d7391"
 # The url that we are going to get data
 url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=0fc34c3d866047af97b8ce3de77d7391"
 
-# I don't know how this works but is supposed to prevent your terminal from sending too many request on Edge
-
 request = requests.get(url)
 
 # We are extracting the url variable into this
-content = request.text
+# .json() method is used to convert that variable into a dictionary rather than a string
+content = request.json()
 
-# This prints the url variable
-print(content)
+for article in content["articles"]:
+    print(article["author"])
+    print(article["title"])
+    print(article["description"])
+    print(article["content"])
+    print(" ")
